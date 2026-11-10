@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Sustentabilidad</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f9f9f9; color: #333; }
+        .dashboard { background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); max-width: 800px; margin: auto; }
+        .metric { font-size: 1.2em; margin-bottom: 15px; padding: 10px; background-color: #e8f5e9; border-left: 5px solid #4caf50; }
+        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <h1> Panel de Control: EcoTech Solutions</h1>
+
+
+        <!-- Variables simples renderizadas con doble llave -->
+        <div class="metric">
+            <strong>Total Global de Emisiones:</strong> {{ total_emisiones|floatformat:2 }} kg CO2
+        </div>
+
+
+        <div class="metric">
+            <strong>Planta de Mayor Consumo:</strong>
+            {% if planta_mayor_consumo %}
+                {{ planta_mayor_consumo }}
+            {% else %}
+                Sin datos
+            {% endif %}
+        </div>
+
+
+        <h2>Desglose por Planta</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Planta Industrial</th>
+                    <th>Emisiones Calculadas</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iteramos sobre el diccionario detalles_emisiones -->
+                {% for planta, emision in detalles_emisiones.items %}
+                <tr>
+                    <td>{{ planta }}</td>
+                    <td>{{ emision|floatformat:2 }} kwh</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="2">No hay registros de emisiones disponibles.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
