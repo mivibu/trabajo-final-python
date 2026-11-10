@@ -1,0 +1,11 @@
+[
+    {
+        "tipo": "PanelSolar",
+        "codigo": "PS-001",
+        "nombre": "Panel Solar 300W",
+        "precio": 45000.0,
+        "stock": 10,
+        "potencia_watts": 300,
+        "eficiencia": 18.5
+    }
+]
